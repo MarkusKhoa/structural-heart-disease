@@ -1,0 +1,65 @@
+# Conda environment file for Structural Heart Disease Joint Embedding
+# Create environment with: conda env create -f environment.yml
+# Update environment with: conda env update -f environment.yml --prune
+
+name: shd-joint-embedding
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python version
+  - python=3.10
+
+  # Core dependencies - PyTorch with CUDA
+  # Option 1: For CUDA 11.8 (uncomment the line below)
+  - pytorch::pytorch>=2.0.0
+  - pytorch::pytorch-cuda=11.8
+  
+  # Option 2: For CUDA 12.1 (uncomment the line below)
+  # - pytorch::pytorch>=2.0.0
+  # - pytorch::pytorch-cuda=12.1
+  
+  # Option 3: CPU only (default - uncomment the line below)
+  # - pytorch::pytorch>=2.0.0
+  # - pytorch::cpuonly
+  
+  # Other core dependencies
+  - numpy>=1.24.0
+  - pandas>=2.0.0
+  - scikit-learn>=1.3.0
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  - tqdm>=4.65.0
+
+  # Development dependencies (optional, comment out if not needed)
+  - pytest>=7.0.0
+  - pytest-cov>=4.0.0
+  - black>=23.0.0
+  - flake8>=6.0.0
+  - isort>=5.12.0
+  - mypy>=1.0.0
+  - pylint>=2.17.0
+
+  # Jupyter (optional)
+  - jupyter>=1.0.0
+  - ipykernel>=6.20.0
+  - ipywidgets>=8.0.0
+  - notebook>=6.5.0
+
+  # Visualization (optional)
+  - tensorboard>=2.12.0
+
+  # Additional useful packages
+  - pip>=23.0
+
+  # Packages only available via pip
+  - pip:
+    - wandb>=0.15.0
+    - pre-commit>=3.0.0
+    - pytest-mock>=3.10.0
+    - line-profiler>=4.0.0
+    - memory-profiler>=0.61.0

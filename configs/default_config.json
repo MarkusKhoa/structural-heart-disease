@@ -1,0 +1,54 @@
+{
+  "data": {
+    "data_dir": "./echonext_dataset",
+    "batch_size": 32,
+    "num_workers": 4
+  },
+  "model": {
+    "ecg_encoder": {
+      "model_size": "large",
+      "embed_dim": 256,
+      "freeze_encoder": false,
+      "use_pretrained": true,
+      "pooling": "mean"
+    },
+    "tabular_encoder": {
+      "dim": 32,
+      "depth": 2,
+      "heads": 4,
+      "output_dim": 128,
+      "attn_dropout": 0.1,
+      "ff_dropout": 0.1
+    },
+    "fusion": {
+      "output_dim": 256,
+      "hidden_dim": 256,
+      "dropout": 0.1,
+      "use_cross_interaction": true,
+      "gate_balance_weight": 0.01
+    },
+    "prediction_head": {
+      "hidden_dims": [512, 256],
+      "dropout": 0.3,
+      "use_temperature": true
+    }
+  },
+  "training": {
+    "num_epochs": 100,
+    "learning_rate": 1e-4,
+    "weight_decay": 1e-5,
+    "warmup_epochs": 5,
+    "loss_type": "asymmetric",
+    "use_pos_weights": true,
+    "early_stopping_patience": 15,
+    "mixed_precision": true
+  },
+  "evaluation": {
+    "eval_uncertainty": true,
+    "uncertainty_samples": 20
+  },
+  "output": {
+    "output_dir": "./outputs",
+    "save_freq": 5
+  }
+}
